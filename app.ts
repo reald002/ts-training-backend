@@ -1,6 +1,8 @@
-const express = require('express');
-require('dotenv').config();
-const todosRouter = require('./routes/todosRouter.js');
+import express from 'express';
+import dotenv from 'dotenv';
+import todosRouter from './routes/todosRouter';
+
+dotenv.config();
 
 const app = express();
 
@@ -10,6 +12,7 @@ app.use( (req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS,PATCH");
   next();
 });
+
 app.use(todosRouter);
 
-module.exports = app;
+export default app;
