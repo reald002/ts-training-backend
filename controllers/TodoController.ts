@@ -1,6 +1,7 @@
-const Todos = require('../models/Todo');
+import { Request, Response } from 'express';
+import Todos from '../models/Todo';
 
-exports.getTodos = async (req, res) => {
+export const getTodos = async (req: Request, res: Response) => {
   try {
     await Todos.find((err, docs) => {
       res.status(200).send(docs);
@@ -10,7 +11,7 @@ exports.getTodos = async (req, res) => {
   }
 };
 
-exports.postTodo = async (req, res) => {
+export const postTodo = async (req: Request, res: Response) => {
   const newData = req.body;
   const saveData = new Todos(newData);
   try {
@@ -21,7 +22,7 @@ exports.postTodo = async (req, res) => {
   }
 };
 
-exports.deleteTodo = async (req, res) => {
+export const deleteTodo = async (req: Request, res: Response) => {
   const {id} = req.params;
   try {
     const data = await Todos.findByIdAndDelete(id);
@@ -31,7 +32,7 @@ exports.deleteTodo = async (req, res) => {
   }
 };
 
-exports.patchTodo = async (req, res) => {
+export const patchTodo = async (req: Request, res: Response) => {
   const changedTodo = req.body;
   const {id} = req.params;
   try {
