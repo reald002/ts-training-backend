@@ -6,7 +6,7 @@ const jsonParser = bodyParser.json();
 const todosRouter = express.Router();
 
 todosRouter.get('/todos', TodoController.getTodos);
-todosRouter.post('/todos/:id', jsonParser, TodoController.postTodo);
+todosRouter.post('/todos', jsonParser, TodoController.postTodo);
 todosRouter.delete('/todos/:id', TodoController.deleteTodo);
 todosRouter.patch('/todos/:id', jsonParser, TodoController.patchTodo);
 
