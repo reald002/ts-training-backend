@@ -2,5 +2,5 @@
 .env
 .idea
 /.idea
-package-lock.json
 /dist
+/data
