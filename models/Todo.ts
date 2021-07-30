@@ -6,11 +6,11 @@ const todosScheme = new Schema({
     type: String,
     required: true
   },
-  checked: {
+  isChecked: {
     type: Boolean,
     default: false
   },
 });
 
-const Todos = mongoose.model('Todos', todosScheme);
+const Todos = mongoose.model('todos', todosScheme);
 export default Todos;

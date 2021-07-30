@@ -1,8 +1,9 @@
 import app from './app';
 import mongoose from 'mongoose';
-const port = process.env.PORT || 3001;
 
-const mongoUri = process.env.MONGO_URI;
+const port: string | number = process.env.PORT || 3001;
+const mongoUri: string = process.env.MONGO_URI;
+
 mongoose.connect(mongoUri, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: true });
 
 app.listen(port, () => {
