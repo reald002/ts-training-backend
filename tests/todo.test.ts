@@ -30,7 +30,7 @@ afterAll(async () => {
 
 describe('Get Endpoints', () => {
   it('should get all todos', async () => {
-    const { body: todos } = await request.get(`/todos`);
+    const { body: todos } = await request.get('/todos');
 
     todos.map((todo: any, index: number) => {
       expect(todo.text).toEqual(MOCK_DATA[index].text);
@@ -41,7 +41,7 @@ describe('Get Endpoints', () => {
 
 describe('Post Endpoints', () => {
   it('should post 1 todo', async () => {
-    const { body: postedTodo} = await request.post(`/todos`).send({
+    const { body: postedTodo } = await request.post('/todos').send({
       text: 'posted todo text'
     });
 
@@ -54,7 +54,7 @@ describe('Post Endpoints', () => {
 
 describe('Patch Endpoints', () => {
   it('should patch 1 todo', async () => {
-    const { body: patchedTodo} = await request.patch(`/todos/${IDs[0]}`).send({
+    const { body: patchedTodo } = await request.patch(`/todos/${IDs[0]}`).send({
       text: '"Do this" is completed now',
       isChecked: true
     });
@@ -66,7 +66,7 @@ describe('Patch Endpoints', () => {
   });
 
   it('should patch 1 todo', async () => {
-    const { body: patchedTodo} = await request.patch(`/todos/${IDs[1]}`).send({
+    const { body: patchedTodo } = await request.patch(`/todos/${IDs[1]}`).send({
       text: '"Do that" text changed'
     });
 
@@ -79,12 +79,12 @@ describe('Patch Endpoints', () => {
 
 describe('Delete Endpoints', () => {
   it('should delete 1 todo', async () => {
-    const { body: todosBefore } = await request.get(`/todos`);
+    const { body: todosBefore } = await request.get('/todos');
 
-    const { body: deletedTodo} = await request.delete(`/todos/${IDs[2]}`);
+    const { body: deletedTodo } = await request.delete(`/todos/${IDs[2]}`);
     const { text } = deletedTodo;
 
-    const { body: todosNow} = await request.get(`/todos`);
+    const { body: todosNow } = await request.get('/todos');
 
     expect(text).toEqual('Do something else');
     expect(todosNow.length).toEqual(todosBefore.length - 1);

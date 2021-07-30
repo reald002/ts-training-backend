@@ -19,6 +19,8 @@
     "rules": {
         "semi": [2, "always"],
         "react/prop-types": 0,
-        "no-console": "warn"
+        "quotes": ["error", "single"],
+        "object-curly-spacing": ["error", "always"],
+        "@typescript-eslint/explicit-module-boundary-types": "off"
     }
 }

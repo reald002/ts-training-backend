@@ -23,7 +23,7 @@ export const postTodo = async (req: Request, res: Response) => {
 };
 
 export const deleteTodo = async (req: Request, res: Response) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
     const data = await Todos.findByIdAndDelete(id);
     res.status(200).send(data);
@@ -34,7 +34,7 @@ export const deleteTodo = async (req: Request, res: Response) => {
 
 export const patchTodo = async (req: Request, res: Response) => {
   const changedTodo = req.body;
-  const {id} = req.params;
+  const { id } = req.params;
   try {
     await Todos.findByIdAndUpdate(id, changedTodo);
     const data = await Todos.findById(id);

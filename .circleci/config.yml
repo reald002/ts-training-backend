@@ -3,18 +3,29 @@ version: 2.1
 orbs:
   node: circleci/node@4.1
 jobs:
-  build-and-test:  
+  build-and-test:
     docker:
-      - image: cimg/node:15.1
+      - image: circleci/node:15.1
+      - image: circleci/mongo:4.4
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: yarn 
+          pkg-manager: yarn
+      - setup_remote_docker
+      - run:
+          name: Waiting for Mongo
+          command: dockerize -wait tcp://localhost:27017 -timeout 1m
+      - checkout
       - run:
           name: Run tests
           command: yarn jest
+          environment:
+            MONGO_TEST_DB_URI: mongodb://127.0.0.1:27017/tests
+      - run:
+          name: Run eslint
+          command: npm run lint
 
 workflows:
-  sample: 
+  sample:
     jobs:
       - build-and-test
